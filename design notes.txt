@@ -1,0 +1,11 @@
+3 elements:
+
+- SQL database
+- Flask webserver
+- React frontend
+
+Most basic form:
+
+- Add single SQL schema/table/record
+- Add helloworld Flask stack
+- Add webpage to open it.
