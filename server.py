@@ -27,6 +27,6 @@ def count():
     conn = sqlite3.connect('IPA.db')
     c = conn.cursor()
     c.execute("SELECT COUNT(*) FROM VOWELS")
-    retstr = str(c.fetchall())
+    count = c.fetchone()[0]  # Fetch the count directly
     conn.close()
-    return retstr
+    return jsonify({"count": count})  # Return the count as a JSON response
