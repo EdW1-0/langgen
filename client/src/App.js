@@ -69,7 +69,7 @@ function App() {
       <button onClick={makeTable}>Make Table</button>
       <p>{message}</p>
       {tableData && (
-        <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+        <table style={{ borderCollapse: 'collapse', width: '50%' }}>
           <thead>
             <tr>
               {tableData.headers.map((header, index) => (
@@ -84,7 +84,7 @@ function App() {
               <tr key={rowIndex}>
                 {row.map((cell, cellIndex) => (
                   <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
-                  {cell}
+                  {cellIndex === 2 ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
                   </td>
                 ))}
               </tr>
