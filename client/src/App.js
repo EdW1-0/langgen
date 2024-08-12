@@ -89,11 +89,14 @@ function App() {
               <tbody>
                 {tableData.rows.map((row, rowIndex) => (
                   <tr key={rowIndex}>
-                    {row.map((cell, cellIndex) => (
-                      <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
-                        {cellIndex === 2 ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
-                      </td>
-                    ))}
+                    {row.map((cell, cellIndex) => {
+                      const symbolColumnIndex = tableData.headers.indexOf('symbol');
+                      return (
+                        <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
+                          {cellIndex === 3 ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>
