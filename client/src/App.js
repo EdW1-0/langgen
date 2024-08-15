@@ -93,7 +93,7 @@ function App() {
                       const symbolColumnIndex = tableData.headers.indexOf('symbol');
                       return (
                         <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
-                          {cellIndex === 3 ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
+                          {cellIndex === symbolColumnIndex ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
                         </td>
                       );
                     })}

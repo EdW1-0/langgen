@@ -11,7 +11,7 @@ def hello_world():
 
 @app.route("/char/<int:index>")
 def char(index):
-    conn = sqlite3.connect('IPA.db')
+    conn = sqlite3.connect('VOWELS.db')
     c = conn.cursor()
     c.execute("SELECT * FROM VOWELS LIMIT 1 OFFSET ?", (index,))
     row = c.fetchone()
@@ -24,7 +24,7 @@ def char(index):
 
 @app.route("/count")
 def count():
-    conn = sqlite3.connect('IPA.db')
+    conn = sqlite3.connect('VOWELS.db')
     c = conn.cursor()
     c.execute("SELECT COUNT(*) FROM VOWELS")
     count = c.fetchone()[0]  # Fetch the count directly
