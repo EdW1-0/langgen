@@ -4,7 +4,8 @@ import axios from 'axios';
 function App() {
   const [activeTab, setActiveTab] = useState('IPA');
   const [message, setMessage] = useState('');
-  const [tableData, setTableData] = useState(null);
+  const [vowelData, setVowelData] = useState(null);
+  const [consonantData, setConsonantData] = useState(null);
 
   const fetchRoot = async () => {
     const response = "Hello world!";//await axios.get('http://localhost:5000/');
@@ -26,9 +27,9 @@ function App() {
   //   }
   // };
 
-  const fetchCount = async () => {
+  const fetchVowelCount = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/count');
+      const response = await axios.get('http://localhost:5000/vowels/count');
       setMessage(response.data.count);
       return response.data.count;
     } catch (error) {
@@ -37,49 +38,92 @@ function App() {
     }
   };
 
-  const fetchHead = async () => {
+  const fetchConsonantCount = async () => {
     try {
-      const count = await fetchCount();
+      const response = await axios.get('http://localhost:5000/consonants/count');
+      setMessage(response.data.count);
+      return response.data.count;
+    } catch (error) {
+      console.log('Error fetching /count:', error);
+      setMessage('Error fetching /count' + error);
+    }
+  };
+
+
+  const fetchVowels = async () => {
+    try {
+      const count = await fetchVowelCount();
       const headers = [];
       const rows = [];
 
       for (let i = 0; i < count; i++) {
-        const response = await axios.get(`http://localhost:5000/char/${i}`);
+        const response = await axios.get(`http://localhost:5000/vowels/${i}`);
         if (i === 0) {
           headers.push(...Object.keys(response.data));
         }
         rows.push(Object.values(response.data));
       }
-      setTableData({ headers, rows });
+      setVowelData({ headers, rows });
     } catch (error) {
       console.log('Error fetching /head:', error);
       setMessage('Error fetching /head' + error);
     }
   }
 
-  const makeTable = () => {
-    fetchHead();
+  const fetchConsonants = async () => {
+    try {
+      const count = await fetchConsonantCount();
+      const headers = [];
+      const rows = [];
+
+      for (let i = 0; i < count; i++) {
+        const response = await axios.get(`http://localhost:5000/consonants/${i}`);
+        if (i === 0) {
+          headers.push(...Object.keys(response.data));
+        }
+        rows.push(Object.values(response.data));
+      }
+      setConsonantData({ headers, rows });
+    } catch (error) {
+      console.log('Error fetching /head:', error);
+      setMessage('Error fetching /head' + error);
+    }
+  }
+
+  const makeVowels = () => {
+    fetchVowels();
   };
+
+  const makeConsonants = () => {
+    fetchConsonants();
+  }
 
   return (
     <div className="App">
+
       <div className="tabs">
         <button onClick={() => setActiveTab('IPA')}>IPA</button>
         <button onClick={() => setActiveTab('Phonology')}>Phonology</button>
-      </div>
+      </div> {/* Closing div for tabs */}
 
       {activeTab === 'IPA' && (
         <div>
-          <button onClick={fetchRoot}>Fetch Root</button>
+        <button onClick={fetchRoot}>Fetch Root</button>
           {/* <button onClick={fetchChar}>Fetch Char</button> */}
-          <button onClick={fetchCount}>Fetch count</button>
-          <button onClick={makeTable}>Make Table</button>
+          <button onClick={fetchVowelCount}>Fetch vowel count</button>
+          <button onClick={fetchConsonantCount}>Fetch consonant count</button>
+          <button onClick={makeVowels}>Make Vowels</button>
+          <button onClick={makeConsonants}>Make Consonants</button>
           <p>{message}</p>
-          {tableData && (
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+
+          {vowelData && (
+            <div>
+            <h2>Vowels</h2>
             <table style={{ borderCollapse: 'collapse', width: '50%' }}>
               <thead>
                 <tr>
-                  {tableData.headers.map((header, index) => (
+                  {vowelData.headers.map((header, index) => (
                     <th key={index} style={{ border: '1px solid black', padding: '8px' }}>
                       {header}
                     </th>
@@ -87,10 +131,10 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                {tableData.rows.map((row, rowIndex) => (
+                {vowelData.rows.map((row, rowIndex) => (
                   <tr key={rowIndex}>
                     {row.map((cell, cellIndex) => {
-                      const symbolColumnIndex = tableData.headers.indexOf('symbol');
+                      const symbolColumnIndex = vowelData.headers.indexOf('symbol');
                       return (
                         <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
                           {cellIndex === symbolColumnIndex ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
@@ -101,8 +145,41 @@ function App() {
                 ))}
               </tbody>
             </table>
+            </div> // Closing div for vowels
           )}
-        </div>
+
+          {consonantData && (
+            <div>
+            <h2>Consonants</h2>
+            <table style={{ borderCollapse: 'collapse', width: '50%' }}>
+              <thead>
+                <tr>
+                  {consonantData.headers.map((header, index) => (
+                    <th key={index} style={{ border: '1px solid black', padding: '8px' }}>
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {consonantData.rows.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => {
+                      const symbolColumnIndex = consonantData.headers.indexOf('symbol');
+                      return (
+                        <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
+                          {cellIndex === symbolColumnIndex ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div> // Closing div for consonants
+      )}
+      </div> // Closing div for flex container
+      </div> // Closing div for IPA
       )}
 
       {activeTab === 'Phonology' && (
@@ -110,7 +187,7 @@ function App() {
           <p>Phonology</p>
         </div>
       )}
-    </div>
+    </div> // Closing div for App
 
   );
 }
