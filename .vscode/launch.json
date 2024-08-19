@@ -25,6 +25,13 @@
                 "FLASK_ENV": "development",
                 "FLASK_DEBUG": "0"
             },
+        },
+        {
+            "name": "csv to SQL",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/sqliser.py",
+            "console": "integratedTerminal"
         }
     ]
 }

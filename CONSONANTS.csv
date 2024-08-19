@@ -1,3 +1,164 @@
 "id",name,symbol,example,voice,place,manner
 "101",Voiceless bilabial plosive,U+0070,pat,,,
 "102",Voiced bilabial plosive,U+0062,bit,,,
+"103",Voiceless alveolar plosive,U+0074,tick,,,
+"104",Voiced alveolar plosive,U+0064,dash,,,
+"105",Voiceless retroflex plosive,U+0288,,,,
+"106",Voiced retroflex plosive,U+0256,,,,
+"107",Voiceless palatal plosive,U+0063,keen,,,
+"108","Voiced palatal plosive
+",U+025F,geese,,,
+"109","Voiceless velar plosive
+","U+006B
+",kiss,,,
+"110","Voiced velar plosive
+","U+0261
+",gaggle,,,
+"111","Voiceless uvular plosive
+","U+0071
+",caught,,,
+"112","Voiced uvular plosive
+",U+0262,,,,
+"113","Glottal stop
+",U+0294,uh-oh,,,
+"114","Voiced bilabial nasal
+","U+006D
+",him,,,
+"115","Voiced labiodental nasal
+","U+0271
+",symphony,,,
+"116",Voiced alveolar nasal,U+006E,month,,,
+"117","Voiced retroflex nasal
+","U+0273
+",,,,
+"118","Voiced palatal nasal
+","U+0272
+",,,,
+"119","Voiced velar nasal
+","U+014B
+",sing,,,
+"120","Voiced uvular nasal
+","U+0274
+",,,,
+"121","Voiced bilabial trill
+","U+0299
+",,,,
+"122",Voiced alveolar trill,U+0072,curd (Scot.),,,
+"123","Voiced uvular trill
+","U+0280
+",,,,
+"124",Voiced alveolar tap or flap,"U+027E
+",better (N Am.),,,
+"125","Voiced retroflex flap
+","U+027D
+",,,,
+"126","Voiceless bilabial fricative
+","U+0278
+",thought (SE Eng.),,,
+"127","Voiced bilabial fricative
+","U+03B2
+",upvote,,,
+"128","Voiceless labiodental fricative
+","U+0066
+",fill,,,
+"129","Voiced labiodental fricative
+","U+0076
+",valve,,,
+"130","Voiceless dental fricative
+","U+03B8
+",thin,,,
+"131","Voiced dental fricative
+","U+00F0
+",this,,,
+"132","Voiceless alveolar sibilant
+",U+0073,sit,,,
+"133","Voiced alveolar fricative
+","U+007A
+",zoo,,,
+"134","Voiceless postalveolar fricative
+","U+0283
+",sheep,,,
+"135","Voiced postalveolar fricative
+","U+0292
+",vision,,,
+"136","Voiceless retroflex fricative
+","U+0282
+",,,,
+"137","Voiced retroflex fricative
+","U+0290
+",,,,
+"138","Voiceless palatal fricative
+","U+00E7
+",hue,,,
+"139","Voiced palatal fricative
+","U+029D
+",,,,
+"140","Voiceless velar fricative
+","U+0078
+",loch (Scot.),,,
+"141","Voiced velar fricative
+","U+0263
+",grass (Scouse),,,
+"142","Voiceless uvular fricative
+","U+03C7
+",neck (Scouse),,,
+"143","Voiced uvular fricative
+","U+0281
+",red (Northumb.),,,
+"144","Voiceless pharyngeal fricative
+","U+0127
+",horrible (RP),,,
+"145","Voiced pharyngeal fricative
+","U+0295
+",,,,
+"146","Voiceless glottal fricative
+","U+0068
+",high,,,
+"147","Voiced glottal fricative
+","U+0266
+",behind (RP),,,
+"148","Voiceless alveolar lateral fricative
+","U+026C
+",,,,
+"149","Voiced alveolar lateral fricative
+","U+026E
+",,,,
+"150","Voiced labiodental approximant
+","U+028B
+",,,,
+"151","Voiced alveolar approximant
+","U+0279
+",,,,
+"152","Voiced retroflex approximant
+","U+027B
+",red (West Cnt.),,,
+"153",Voiced palatal approximant,"U+006A
+",you,,,
+"154","Voiced velar approximant
+","U+0270
+",,,,
+"155",Voiced alveolar lateral approximant,"U+006C
+",let,,,
+"156","Voiced retroflex lateral approximant
+","U+026D
+",,,,
+"157","Voiced palatal lateral approximant
+","U+028E
+",million (RP),,,
+"158",Voiced velar lateral approximant,"U+029F
+",middle (Southern US),,,
+"172",Voiceless pharyngeal trill,"U+029C
+",,,,
+"173",Epiglottal plosive,U+02A1,,,,
+"174",Voiced pharyngeal trill,"U+02A2
+",,,,
+,,,,,,
+"182","Voiceless alveolo-palatal fricative
+","U+0255
+",Tuesday (RP),,,
+"183","Voiced alveolo-palatal fricative
+","U+0291
+",,,,
+"184","Voiced labiodental flap
+","U+2C71
+",,,,

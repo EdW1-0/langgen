@@ -168,7 +168,9 @@ function App() {
                       const symbolColumnIndex = consonantData.headers.indexOf('symbol');
                       return (
                         <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
-                          {cellIndex === symbolColumnIndex ? String.fromCodePoint(parseInt(cell.replace('U+', ''), 16)) : cell}
+                          {cellIndex === symbolColumnIndex ? 
+                            (isNaN(parseInt(cell.replace('U+', ''), 16)) ? 'NaN' : String.fromCodePoint(parseInt(cell.replace('U+', ''), 16))) 
+                            : cell}
                         </td>
                       );
                     })}
