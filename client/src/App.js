@@ -6,6 +6,10 @@ function App() {
   const [message, setMessage] = useState('');
   const [vowelData, setVowelData] = useState(null);
   const [consonantData, setConsonantData] = useState(null);
+  const [phonologyConsonantData, setPhonologyConsonantData] = useState(null);
+  const [phonologyVowelData, setPhonologyVowelData] = useState(null);
+
+  const [phonologyMessage, setPhonologyMessage] = useState('');
 
   const fetchRoot = async () => {
     const response = "Hello world!";//await axios.get('http://localhost:5000/');
@@ -98,6 +102,48 @@ function App() {
     fetchConsonants();
   }
 
+  const fetchPhonologyConsonantCount = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/phonology/consonants/count');
+      setPhonologyMessage(response.data.count);
+      return response.data.count;
+    } catch (error) {
+      console.log('Error fetching /count:', error);
+      setMessage('Error fetching /count' + error);
+    }
+  };
+
+  const fetchPhonology = async () => {
+    try {
+      const count = await fetchPhonologyConsonantCount();
+      const headers = [];
+      const rows = [];
+
+      for (let i = 0; i < count; i++) {
+        const response = await axios.get(`http://localhost:5000/phonology/consonants/${i}`);
+        if (i === 0) {
+          headers.push(...Object.keys(response.data));
+        }
+        rows.push(Object.values(response.data));
+      }
+      setPhonologyConsonantData({ headers, rows });
+    } catch (error) {
+      console.log('Error fetching /head:', error);
+      setMessage('Error fetching /head' + error);
+    }
+  }
+
+  const makePhonology = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/phonology/generate');
+      setPhonologyMessage(response.data.message);
+      fetchPhonology();
+    } catch (error) {
+      console.log('Error fetching /phonology:', error);
+      setPhonologyMessage('Error fetching /phonology' + error);
+    }
+  }
+
   return (
     <div className="App">
 
@@ -186,7 +232,41 @@ function App() {
 
       {activeTab === 'Phonology' && (
         <div>
+          <button onClick={makePhonology}>Make Phonology</button>
+          <p>{phonologyMessage}</p>
           <p>Phonology</p>
+          {phonologyConsonantData && (
+            <div>
+            <h2>Consonants</h2>
+            <table style={{ borderCollapse: 'collapse', width: '50%' }}>
+              <thead>
+                <tr>
+                  {phonologyConsonantData.headers.map((header, index) => (
+                    <th key={index} style={{ border: '1px solid black', padding: '8px' }}>
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {phonologyConsonantData.rows.map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => {
+                      const symbolColumnIndex = phonologyConsonantData.headers.indexOf('symbol');
+                      return (
+                        <td key={cellIndex} style={{ border: '1px solid black', padding: '8px' }}>
+                          {cellIndex === symbolColumnIndex ? 
+                            (isNaN(parseInt(cell.replace('U+', ''), 16)) ? 'NaN' : String.fromCodePoint(parseInt(cell.replace('U+', ''), 16))) 
+                            : cell}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div> // Closing div for consonants
+      )}
         </div>
       )}
     </div> // Closing div for App
